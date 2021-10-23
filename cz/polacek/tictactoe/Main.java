@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static String[] message = {" - X's turn", " - O's turn"};
+    private static String[] message = {"- X's turn", "- O's turn"};
     private static Scanner sc = new Scanner(System.in);
     private static char[] board = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
     private static char[] playerXboard;
