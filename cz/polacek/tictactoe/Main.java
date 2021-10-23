@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static String[] message = {"X's turn", "O's turn"};
+    private static String[] message = {" - X's turn", " - O's turn"};
     private static Scanner sc = new Scanner(System.in);
     private static char[] board = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    private static int[] playerXboard;
-    private static int[] playerOboard;
+    private static char[] playerXboard;
+    private static char[] playerOboard;
     private static int[][] combinations = {
             {0, 1, 2},
             {3, 4, 5},
@@ -31,19 +31,15 @@ public class Main {
 
     private static void gameTurn() {
         printBoard();
-        System.out.print("Choose array: ");
+        System.out.print("Choose an array: ");
         int idChoose = sc.nextInt();
         if (round%2 == 0) {
             board[idChoose] = 'X';
         } else {
             board[idChoose] = 'O';
         }
-        if (round > 7) {
-            System.out.println("Tie!");
-        } else {
-            round++;
-            gameCheck();
-        }
+        round++;
+        gameCheck();
     }
 
     private static void gameStartTurn() {
@@ -52,29 +48,32 @@ public class Main {
     }
 
     private static void gameCheck() {
-        for (int i = 0; i < 2; i++) {
-            char checkChar;
-            if (i == 0) checkChar = 'X';
-            else checkChar = 'O';
-            for (int[] combination : combinations) {
-                if (
-                        board[combination[0]] == checkChar &&
-                        board[combination[1]] == checkChar &&
-                        board[combination[2]] == checkChar
-                ) {
-                    gameEnds();
+        if (round < 8) {
+            for (int i = 0; i < 2; i++) {
+                char checkChar;
+                if (i == 0) {
+                    checkChar = 'X';
                 } else {
-                    gameStartTurn();
+                    checkChar = 'O';
+                }
+                for (int j = 0; j < combinations.length; j++) {
+                    if (board[combinations[j][0]] == checkChar && board[combinations[j][1]] == checkChar && board[combinations[j][2]] == checkChar) {
+                        gameEnds();
+                        return;
+                    }
                 }
             }
+            gameStartTurn();
+        } else {
+            System.out.println("\n Game: Tie!");
         }
     }
 
     private static void gameEnds() {
         if (round%2 == 0) {
-            System.out.println("O's wins");
+            System.out.println("\n Game: O's wins");
         } else {
-            System.out.println("X's wins");
+            System.out.println("\n Game: X's wins");
         }
     }
 
