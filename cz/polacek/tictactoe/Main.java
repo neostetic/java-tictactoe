@@ -41,8 +41,8 @@ public class Main {
                 System.out.println("Sorry, wrong number...");
             } else {checkClear++;}
         } while (checkClear == 0);
-        if (round%2 == 0) {board[idChoose] = 'X';
-        } else {board[idChoose] = 'O';}
+        if (round%2 == 0) {board[idChoose] = 'X';}
+        else {board[idChoose] = 'O';}
         playerBoard[playerBoardCount] = idChoose;
         playerBoardCount++;
         round++;
@@ -60,11 +60,10 @@ public class Main {
                 char checkChar;
                 if (i == 0) {checkChar = 'X';} else {checkChar = 'O';}
                 for (int j = 0; j < combinations.length; j++) {
-                    if (
-                            board[combinations[j][0]] == checkChar &&
-                            board[combinations[j][1]] == checkChar &&
-                            board[combinations[j][2]] == checkChar
-                    ) {
+                    if (board[combinations[j][0]] == checkChar &&
+                        board[combinations[j][1]] == checkChar &&
+                        board[combinations[j][2]] == checkChar
+                       ) {
                         gameEnds();
                         return;
                     }
@@ -77,11 +76,8 @@ public class Main {
     }
 
     private static void gameEnds() {
-        if (round%2 == 0) {
-            System.out.println("\n Game: O's wins");
-        } else {
-            System.out.println("\n Game: X's wins");
-        }
+        if (round%2 == 0) {System.out.println("\n Game: O's wins");}
+        else {System.out.println("\n Game: X's wins");}
     }
 
 
