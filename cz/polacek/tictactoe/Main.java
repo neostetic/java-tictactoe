@@ -41,11 +41,8 @@ public class Main {
                 System.out.println("Sorry, wrong number...");
             } else {checkClear++;}
         } while (checkClear == 0);
-        if (round%2 == 0) {
-            board[idChoose] = 'X';
-        } else {
-            board[idChoose] = 'O';
-        }
+        if (round%2 == 0) {board[idChoose] = 'X';
+        } else {board[idChoose] = 'O';}
         playerBoard[playerBoardCount] = idChoose;
         playerBoardCount++;
         round++;
