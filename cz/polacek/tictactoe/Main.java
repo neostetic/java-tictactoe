@@ -73,18 +73,13 @@ public class Main {
                 }
             }
             gameStartTurn();
-        } else {
-            System.out.println("\nGame: Tie!");
-        }
+        } else { System.out.println("\nGame: Tie!"); }
     }
 
     private static void gameEnds() {
         printBoard();
-        if (round%2 == 0) {
-            System.out.println("\nGame: " + player2 + "'s wins");
-        } else {
-            System.out.println("\nGame: " + player1 + "'s wins");
-        }
+        if (round%2 == 0) { System.out.println("\nGame: " + player2 + "'s wins"); }
+        else { System.out.println("\nGame: " + player1 + "'s wins"); }
     }
 
 
