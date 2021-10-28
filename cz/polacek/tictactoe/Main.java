@@ -6,10 +6,12 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static String[] message = {"- X's turn", "- O's turn"};
+    private static char player1 = 'E';
+    private static char player2 = 'L';
+    private static String[] message = {player1 + "'s turn", player2 + "'s turn"};
     private static Scanner sc = new Scanner(System.in);
-    private static char[] board = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-    private static int[] playerBoard = new int[9];
+    private static char[] board = {'0', '1', '2', '3', '4', '5', '6', '7', '8'};
+    private static int[] playerBoard = {-1, -1, -1, -1, -1, -1, -1, -1, -1}; // new int[9];
     private static byte playerBoardCount = 0;
     private static byte round = 0;
     private static int[][] combinations = {
@@ -41,8 +43,8 @@ public class Main {
                 System.out.println("Sorry, wrong number...");
             } else {checkClear++;}
         } while (checkClear == 0);
-        if (round%2 == 0) {board[idChoose] = 'X';}
-        else {board[idChoose] = 'O';}
+        if (round%2 == 0) {board[idChoose] = player1;
+        } else {board[idChoose] = player2;}
         playerBoard[playerBoardCount] = idChoose;
         playerBoardCount++;
         round++;
@@ -55,15 +57,16 @@ public class Main {
     }
 
     private static void gameCheck() {
-        if (round < 8) {
+        if (round < 9) {
             for (int i = 0; i < 2; i++) {
                 char checkChar;
-                if (i == 0) {checkChar = 'X';} else {checkChar = 'O';}
+                if (i == 0) {checkChar = player1;} else {checkChar = player2;}
                 for (int j = 0; j < combinations.length; j++) {
-                    if (board[combinations[j][0]] == checkChar &&
-                        board[combinations[j][1]] == checkChar &&
-                        board[combinations[j][2]] == checkChar
-                       ) {
+                    if (
+                            board[combinations[j][0]] == checkChar &&
+                            board[combinations[j][1]] == checkChar &&
+                            board[combinations[j][2]] == checkChar
+                    ) {
                         gameEnds();
                         return;
                     }
@@ -71,13 +74,17 @@ public class Main {
             }
             gameStartTurn();
         } else {
-            System.out.println("\n Game: Tie!");
+            System.out.println("\nGame: Tie!");
         }
     }
 
     private static void gameEnds() {
-        if (round%2 == 0) {System.out.println("\n Game: O's wins");}
-        else {System.out.println("\n Game: X's wins");}
+        printBoard();
+        if (round%2 == 0) {
+            System.out.println("\nGame: " + player2 + "'s wins");
+        } else {
+            System.out.println("\nGame: " + player1 + "'s wins");
+        }
     }
 
 
