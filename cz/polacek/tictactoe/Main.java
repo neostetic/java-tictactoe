@@ -73,8 +73,8 @@ public class Main {
                 for (int j = 0; j < combinations.length; j++) {
                     if (
                             board[combinations[j][0]] == checkChar &&
-                                    board[combinations[j][1]] == checkChar &&
-                                    board[combinations[j][2]] == checkChar
+                            board[combinations[j][1]] == checkChar &&
+                            board[combinations[j][2]] == checkChar
                     ) {
                         gameEnds();
                         return;
