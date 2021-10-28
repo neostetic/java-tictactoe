@@ -41,10 +41,15 @@ public class Main {
             int arrayIdChoose = idChoose;
             if (Arrays.stream(playerBoard).anyMatch(i -> i == arrayIdChoose)) {
                 System.out.println("Sorry, wrong number...");
-            } else {checkClear++;}
+            } else {
+                checkClear++;
+            }
         } while (checkClear == 0);
-        if (round%2 == 0) {board[idChoose] = player1;
-        } else {board[idChoose] = player2;}
+        if (round % 2 == 0) {
+            board[idChoose] = player1;
+        } else {
+            board[idChoose] = player2;
+        }
         playerBoard[playerBoardCount] = idChoose;
         playerBoardCount++;
         round++;
@@ -52,7 +57,7 @@ public class Main {
     }
 
     private static void gameStartTurn() {
-        System.out.println("\n" + message[round%2]);
+        System.out.println("\n" + message[round % 2]);
         gameTurn();
     }
 
@@ -60,12 +65,16 @@ public class Main {
         if (round < 9) {
             for (int i = 0; i < 2; i++) {
                 char checkChar;
-                if (i == 0) {checkChar = player1;} else {checkChar = player2;}
+                if (i == 0) {
+                    checkChar = player1;
+                } else {
+                    checkChar = player2;
+                }
                 for (int j = 0; j < combinations.length; j++) {
                     if (
                             board[combinations[j][0]] == checkChar &&
-                            board[combinations[j][1]] == checkChar &&
-                            board[combinations[j][2]] == checkChar
+                                    board[combinations[j][1]] == checkChar &&
+                                    board[combinations[j][2]] == checkChar
                     ) {
                         gameEnds();
                         return;
@@ -73,13 +82,18 @@ public class Main {
                 }
             }
             gameStartTurn();
-        } else { System.out.println("\nGame: Tie!"); }
+        } else {
+            System.out.println("\nGame: Tie!");
+        }
     }
 
     private static void gameEnds() {
         printBoard();
-        if (round%2 == 0) { System.out.println("\nGame: " + player2 + "'s wins"); }
-        else { System.out.println("\nGame: " + player1 + "'s wins"); }
+        if (round % 2 == 0) {
+            System.out.println("\nGame: " + player2 + "'s wins");
+        } else {
+            System.out.println("\nGame: " + player1 + "'s wins");
+        }
     }
 
 
